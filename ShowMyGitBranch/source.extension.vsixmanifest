@@ -3,7 +3,7 @@
     <Metadata>
         <Identity Id="aafd1434-3bc5-43bd-bec9-9b51837136d7" Version="0.1" Language="en-US" Publisher="Thiago Sa" />
         <DisplayName>ShowMyGitBranch</DisplayName>
-        <Description>Displays the name of your current git branch in Visual Studio's title bar.</Description>
+        <Description xml:space="preserve">Displays the name of your current Git branch on Visual Studio's title bar.</Description>
     </Metadata>
     <Installation InstalledByMsi="false">
         <InstallationTarget Version="[12.0,13.0)" Id="Microsoft.VisualStudio.Pro" />
