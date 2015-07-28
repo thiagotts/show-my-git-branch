@@ -1,10 +1,13 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Runtime.InteropServices;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+
 
 namespace ShowMyGitBranch {
     /// <summary>
@@ -27,6 +30,7 @@ namespace ShowMyGitBranch {
     [Guid(GuidList.guidShowMyGitBranchPkgString)]
     public sealed class ShowMyGitBranchPackage : Package {
         private DTE2 dte;
+        private string windowTitle;
 
         /// <summary>
         /// Default constructor of the package.
@@ -53,7 +57,12 @@ namespace ShowMyGitBranch {
 
         private void UpdateBranchName() {
             var fileName = dte.Solution.FileName;
-            var fullName = dte.Solution.FullName;
+            if (string.IsNullOrWhiteSpace(fileName)) return;
+
+            var branchGetter = new BranchGetter();
+            string branchName = branchGetter.GetCurrentBranchName(new FileInfo(fileName).DirectoryName);
+            
+            ChangeWindowTitle(branchName);
         }
 
         private void UpdateBranchName(Window gotFocus, Window lostFocus) {
@@ -62,6 +71,14 @@ namespace ShowMyGitBranch {
 
         private void UpdateBranchName(Document document) {
             UpdateBranchName();
+        }
+
+        private void ChangeWindowTitle(string branchName) {
+            string caption = dte.MainWindow.Caption;
+            if (windowTitle == null || !windowTitle.Contains(caption)) {
+                windowTitle = string.Format("[{0}] {1}", branchName, caption);
+                System.Windows.Application.Current.MainWindow.Title = windowTitle;
+            }
         }
     }
 }
