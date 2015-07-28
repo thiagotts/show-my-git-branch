@@ -64,7 +64,6 @@
   <ItemGroup>
     <Compile Include="BranchGetterTests.cs" />
     <Compile Include="PackageTest.cs" />
-    <Compile Include="ShowMyGitBranchPackageTests.cs" />
     <!---->
     <!---->
     <!---->
