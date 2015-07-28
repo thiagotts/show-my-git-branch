@@ -15,7 +15,8 @@ namespace ShowMyGitBranch {
     [Guid(GuidList.guidShowMyGitBranchPkgString)]
     public sealed class ShowMyGitBranchPackage : Package {
         private DTE2 dte;
-        private const string TitlePattern = @"[{0}] {1} - {2}";
+        private const string TitlePatternWithBranch = @"[{0}] {1} - {2}";
+        private const string TitlePatternWithoutBranch = @"{0} - {1}";
 
         protected override void Initialize() {
             base.Initialize();
@@ -52,7 +53,10 @@ namespace ShowMyGitBranch {
                     solutionName = property.Value as string;
             }
 
-            var windowTitle = string.Format(TitlePattern, branchName, solutionName, decoration);
+            var windowTitle = string.IsNullOrWhiteSpace(branchName) ?
+                string.Format(TitlePatternWithoutBranch, solutionName, decoration) :
+                string.Format(TitlePatternWithBranch, branchName, solutionName, decoration);
+            
             Application.Current.MainWindow.Title = windowTitle;
         }
     }
