@@ -23,6 +23,7 @@ namespace ShowMyGitBranch {
             dte = (DTE2) (GetGlobalService(typeof (DTE)));
             dte.Events.SolutionEvents.Opened += UpdateBranchName;
             dte.Events.WindowEvents.WindowActivated += UpdateBranchName;
+            dte.Events.WindowEvents.WindowCreated += UpdateBranchName;
             dte.Events.DocumentEvents.DocumentOpened += UpdateBranchName;
         }
 
@@ -44,6 +45,10 @@ namespace ShowMyGitBranch {
             UpdateBranchName();
         }
 
+        private void UpdateBranchName(Window window) {
+            UpdateBranchName();
+        }
+
         private void ChangeWindowTitle(string branchName) {
             var decoration = dte.Name;
 
@@ -56,8 +61,10 @@ namespace ShowMyGitBranch {
             var windowTitle = string.IsNullOrWhiteSpace(branchName) ?
                 string.Format(TitlePatternWithoutBranch, solutionName, decoration) :
                 string.Format(TitlePatternWithBranch, branchName, solutionName, decoration);
-            
-            Application.Current.MainWindow.Title = windowTitle;
+
+            foreach (System.Windows.Window window in Application.Current.Windows) {
+                window.Title = windowTitle;
+            }
         }
     }
 }
