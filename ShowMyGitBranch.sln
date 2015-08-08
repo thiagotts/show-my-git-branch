@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowMyGitBranch", "ShowMyGitBranch\ShowMyGitBranch.csproj", "{97EE5793-0CEF-4CBE-AE01-293DE5724EA1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6873516-3F2A-43AD-9B61-0E902D2732F4}"
 	ProjectSection(SolutionItems) = preProject
 		IntegrationTests.testsettings = IntegrationTests.testsettings
 		UnitTests.testsettings = UnitTests.testsettings
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowMyGitBranch", "ShowMyGitBranch\ShowMyGitBranch.csproj", "{97EE5793-0CEF-4CBE-AE01-293DE5724EA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowMyGitBranch_UnitTests", "ShowMyGitBranch\ShowMyGitBranch_UnitTests\ShowMyGitBranch_UnitTests.csproj", "{498E30DD-236E-4B5C-BCC6-2CF09DB2DC7A}"
 EndProject
