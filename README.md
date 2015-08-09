@@ -11,6 +11,11 @@ This is how it looks like:
 
 See the list of [available releases](https://github.com/thiagotts/show-my-git-branch/releases) or download it from the [Visual Studio Gallery](https://visualstudiogallery.msdn.microsoft.com/6eef160a-4765-4f6b-8064-31ecd16896c1).
 
+## Supported Visual Studio versions
+
+- Visual Studio 2013
+- Visual Studio 2015
+
 ## License
 
 MIT License
