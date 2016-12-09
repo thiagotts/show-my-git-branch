@@ -93,6 +93,28 @@ namespace ShowMyGitBranch_UnitTests {
 
             Assert.AreEqual("feature/develop123", branchName);
         }
-      
+
+        [Test]
+        public void IfPathIsAGitWorkTree_MustReturnTheNameOfTheCurrentBranch()
+        {
+            DirectoryInfo repoPath = Directory.CreateDirectory(Path.Combine(baseTestPath, "Test6"));
+            DirectoryInfo gitFolder = Directory.CreateDirectory(Path.Combine(repoPath.FullName, ".git"));
+            DirectoryInfo workTreeFolder = Directory.CreateDirectory(Path.Combine(gitFolder.FullName, Path.Combine("worktrees", "Test7")));
+            using (StreamWriter file = new StreamWriter(Path.Combine(workTreeFolder.FullName, "HEAD"), false))
+            {
+                file.WriteLine("ref: refs/heads/develop123");
+            }
+
+            DirectoryInfo workTreePath = Directory.CreateDirectory(Path.Combine(baseTestPath, "Test7"));
+            using (StreamWriter file = new StreamWriter(Path.Combine(workTreePath.FullName, ".git"), false))
+            {
+                file.WriteLine($"gitdir: {workTreeFolder.FullName.Replace("\\", "/")}");
+            }
+
+            var branchGetter = new BranchGetter();
+            string branchName = branchGetter.GetCurrentBranchName(workTreePath.FullName);
+
+            Assert.AreEqual("develop123", branchName);
+        }
     }
 }

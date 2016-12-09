@@ -18,18 +18,27 @@ namespace ShowMyGitBranch {
             if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path)) return string.Empty;
 
             var currentPath = new DirectoryInfo(path);
-            bool isAGitRepo;
+            bool isAGitRepo, isAGitWorkTree = false;
             string gitFolder;
             do {
                 gitFolder = Path.Combine(currentPath.FullName, ".git");
                 isAGitRepo = Directory.Exists(gitFolder);
                 if (isAGitRepo) break;
 
+                if (File.Exists(gitFolder)) {
+                    var fileContents = File.ReadAllText(gitFolder).Trim();
+                    if (fileContents.StartsWith("gitdir: ")) {
+                        gitFolder = fileContents.Replace("/", "\\").Substring(8);
+                        isAGitWorkTree = Directory.Exists(gitFolder);
+                        break;
+                    }
+                }
+
                 currentPath = currentPath.Parent;
             } while (currentPath != null && currentPath.Exists);
 
 
-            return isAGitRepo ? gitFolder : string.Empty;
+            return isAGitRepo || isAGitWorkTree ? gitFolder : string.Empty;
         }
 
         private string GetHeadFile(string gitFolder) {

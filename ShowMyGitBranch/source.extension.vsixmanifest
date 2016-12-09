@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="aafd1434-3bc5-43bd-bec9-9b51837136d7" Version="0.2" Language="en-US" Publisher="Thiago Sa" />
+        <Identity Id="aafd1434-3bc5-43bd-bec9-9b51837136d7" Version="0.3" Language="en-US" Publisher="Thiago Sa" />
         <DisplayName>ShowMyGitBranch</DisplayName>
         <Description xml:space="preserve">Displays the name of your current Git branch on Visual Studio's title bar.</Description>
     </Metadata>
