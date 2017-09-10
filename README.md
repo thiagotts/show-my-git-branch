@@ -4,7 +4,7 @@ A Visual Studio extension that displays your current Git branch on the title bar
 This is how it looks like:
 
 <p align="center">
-  <img src="https://dl.dropboxusercontent.com/u/737234/show-my-git-branch/show-my-git-branch-example.png" alt="ShowMyGitBranch example"/>
+  <img src="https://s3.amazonaws.com/tts.files/show-my-git-branch-example.png" alt="ShowMyGitBranch example"/>
 </p>
 
 ## Download
